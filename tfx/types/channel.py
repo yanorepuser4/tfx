@@ -558,7 +558,9 @@ class OutputChannel(Channel):
     self._is_async = True
 
   def future(self) -> ChannelWrappedPlaceholder:
-    return ChannelWrappedPlaceholder(self)
+    return ChannelWrappedPlaceholder(
+        self, key=f'{self.producer_component_id}_{self.output_key}'
+    )
 
 
 @doc_controls.do_not_generate_docs
@@ -793,7 +795,8 @@ class ChannelWrappedPlaceholder(artifact_placeholder.ArtifactPlaceholder):
     Args:
       key: The new key for the channel.
     """
-    self._key = key
+    del key  # unused.
+    return
 
   def __getitem__(self, index: int) -> ChannelWrappedPlaceholder:
     if self._index is not None:

@@ -268,7 +268,8 @@ def _compile_input_spec(
           name=channel.pipeline_name,
       )
       result_input_channel.metadata_connection_config.Pack(config)
-
+  elif isinstance(channel, channel_types.ChannelWrappedPlaceholder):
+    print(f'Channel: {tfx_node.id}.{input_key} was a CWP!')
   # Note that this path is *usually* not taken, as most output channels already
   # exist in pipeline_ctx.channels, as they are added in after
   # compiler._generate_input_spec_for_outputs is called.

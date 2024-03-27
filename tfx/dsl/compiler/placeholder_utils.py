@@ -107,6 +107,7 @@ def resolve_placeholder_expression(
         debug_str(expression),
         err.placeholder,
     )
+    logging.warning("Context: %s", context)
     return None
   except Exception as e:
     raise ValueError(

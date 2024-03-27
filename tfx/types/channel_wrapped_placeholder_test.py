@@ -61,7 +61,7 @@ class ChannelWrappedPlaceholderTest(parameterized.TestCase, tf.test.TestCase):
         output_key='num',
     )
     placeholder = output_channel.future()[0].value
-    channel_to_key = {output_channel: '_component.num'}
+    channel_to_key = {output_channel: 'producer_num'}
     self.assertProtoEquals(
         channel_utils.encode_placeholder_with_channels(
             placeholder, lambda k: channel_to_key[k]
@@ -161,7 +161,7 @@ class ChannelWrappedPlaceholderTest(parameterized.TestCase, tf.test.TestCase):
               index_op {
                 expression {
                   placeholder {
-                    key: "MyTypeName"
+                    key: "producer_foo"
                   }
                 }
               }
@@ -351,7 +351,9 @@ class PredicateTest(parameterized.TestCase, tf.test.TestCase):
                   operator {
                     index_op {
                       expression {
-                        placeholder {}
+                        placeholder {
+                            key: "a_foo"
+                        }
                       }
                     }
                   }
@@ -366,7 +368,9 @@ class PredicateTest(parameterized.TestCase, tf.test.TestCase):
                   operator {
                     index_op {
                       expression {
-                        placeholder {}
+                        placeholder {
+                            key: "b_bar"
+                        }
                       }
                     }
                   }
@@ -413,7 +417,7 @@ class PredicateTest(parameterized.TestCase, tf.test.TestCase):
                     index_op {
                       expression {
                         placeholder {
-                          key: "channel_1_key"
+                          key: "a_foo"
                         }
                       }
                     }
@@ -430,7 +434,7 @@ class PredicateTest(parameterized.TestCase, tf.test.TestCase):
                     index_op {
                       expression {
                         placeholder {
-                          key: "channel_2_key"
+                          key: "b_bar"
                         }
                       }
                     }
@@ -482,7 +486,7 @@ class PredicateTest(parameterized.TestCase, tf.test.TestCase):
                           index_op {
                             expression {
                               placeholder {
-                                key: "channel_1_key"
+                                key: "a_foo"
                               }
                             }
                           }
@@ -499,7 +503,7 @@ class PredicateTest(parameterized.TestCase, tf.test.TestCase):
                           index_op {
                             expression {
                               placeholder {
-                                key: "channel_2_key"
+                                key: "b_bar"
                               }
                             }
                           }
@@ -553,7 +557,7 @@ class PredicateTest(parameterized.TestCase, tf.test.TestCase):
                     index_op {
                       expression {
                         placeholder {
-                          key: "channel_1_key"
+                          key: "a_foo"
                         }
                       }
                     }
@@ -570,7 +574,7 @@ class PredicateTest(parameterized.TestCase, tf.test.TestCase):
                     index_op {
                       expression {
                         placeholder {
-                          key: "channel_2_key"
+                          key: "b_bar"
                         }
                       }
                     }
@@ -622,7 +626,7 @@ class PredicateTest(parameterized.TestCase, tf.test.TestCase):
                           index_op {
                             expression {
                               placeholder {
-                                key: "channel_1_key"
+                                key: "a_foo"
                               }
                             }
                           }
@@ -639,7 +643,7 @@ class PredicateTest(parameterized.TestCase, tf.test.TestCase):
                           index_op {
                             expression {
                               placeholder {
-                                key: "channel_2_key"
+                                key: "b_bar"
                               }
                             }
                           }
@@ -695,7 +699,7 @@ class PredicateTest(parameterized.TestCase, tf.test.TestCase):
                           index_op {
                             expression {
                               placeholder {
-                                key: "channel_1_key"
+                                key: "a_foo"
                               }
                             }
                           }
@@ -712,7 +716,7 @@ class PredicateTest(parameterized.TestCase, tf.test.TestCase):
                           index_op {
                             expression {
                               placeholder {
-                                key: "channel_2_key"
+                                key: "b_bar"
                               }
                             }
                           }
@@ -768,7 +772,7 @@ class PredicateTest(parameterized.TestCase, tf.test.TestCase):
                           index_op {
                             expression {
                               placeholder {
-                                key: "channel_1_key"
+                                key: "a_foo"
                               }
                             }
                           }
@@ -785,7 +789,7 @@ class PredicateTest(parameterized.TestCase, tf.test.TestCase):
                           index_op {
                             expression {
                               placeholder {
-                                key: "channel_2_key"
+                                key: "b_bar"
                               }
                             }
                           }
@@ -868,7 +872,7 @@ class PredicateTest(parameterized.TestCase, tf.test.TestCase):
                                       index_op {
                                         expression {
                                           placeholder {
-                                            key: "channel_11_key"
+                                            key: "a_1"
                                           }
                                         }
                                       }
@@ -885,7 +889,7 @@ class PredicateTest(parameterized.TestCase, tf.test.TestCase):
                                       index_op {
                                         expression {
                                           placeholder {
-                                            key: "channel_12_key"
+                                            key: "b_2"
                                           }
                                         }
                                       }
@@ -913,7 +917,7 @@ class PredicateTest(parameterized.TestCase, tf.test.TestCase):
                                 index_op {
                                   expression {
                                     placeholder {
-                                      key: "channel_21_key"
+                                      key: "c_3"
                                     }
                                   }
                                 }
@@ -930,7 +934,7 @@ class PredicateTest(parameterized.TestCase, tf.test.TestCase):
                                 index_op {
                                   expression {
                                     placeholder {
-                                      key: "channel_22_key"
+                                      key: "d_4"
                                     }
                                   }
                                 }
